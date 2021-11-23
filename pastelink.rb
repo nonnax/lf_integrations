@@ -3,7 +3,8 @@
 require 'fileutils'
 # ls (file manager) util: ls selected files are created into softlinks in current dir
 #
-files = File.readlines('/home/seti/.local/share/lf/files').map(&:chomp)
+lfshare = File.expand_path('~/.local/share/lf/files')
+files = File.readlines(lfshare).map(&:chomp)
 files.shift
 files.each do |f|
   begin
