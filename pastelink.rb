@@ -1,11 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 require 'fileutils'
+require_relative 'lib/lf'
 # ls (file manager) util: ls selected files are created into softlinks in current dir
 #
-lfshare = File.expand_path('~/.local/share/lf/files')
-files = File.readlines(lfshare).map(&:chomp)
-files.shift
+files=LF.files_selected
 files.each do |f|
   begin
     FileUtils.ln_s f, File.basename(f)
