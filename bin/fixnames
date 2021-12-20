@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+ARGV.each do |f|
+  # p [f, f.gsub!(/[^0-9A-Za-z.\-]/, '_')]
+  File.rename f, f.gsub(/[^\w\.\-]/, '_')
+rescue StandardError
+  p [f, SystemCallError]
+end

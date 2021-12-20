@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+require 'rubytools/file_ext'
+require 'fileutils'
+p f = ENV['fx'].split("\n").first
+FileUtil.cp( f, f.filename_succ ) rescue p 'error copying'
