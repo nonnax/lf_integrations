@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 ARGV.each do |f|
-  File.rename f, f.gsub(/[^\w\.]/, '-')
+  File.rename f, f.gsub(/[^\w\.]+/, '-')
 rescue StandardError=>e
   p [f, e]
 end
