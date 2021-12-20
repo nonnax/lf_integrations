@@ -1,5 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
 # Id$ nonnax 2021-11-23 12:45:47 +0800
-tmp=/tmp/eval.rb
-touch $tmp
-micro $tmp && cat $tmp | ruby -e 'eval ARGF.read'
+require 'rubytools/editor'
+tmp='/tmp/eval.rb'
+code=IO.editor(File.read(tmp))
+File.write tmp, code
+puts eval(code)
