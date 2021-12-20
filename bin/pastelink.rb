@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 require 'fileutils'
-require_relative 'lf/lf'
+require 'lf/lf'
 # ls (file manager) util: ls selected files are created into softlinks in current dir
 #
 files=LF.files_selected
