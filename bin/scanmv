@@ -1,23 +1,51 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 # Id$ nonnax 2021-12-20 01:34:41 +0800
 require 'json'
 require 'fileutils'
-h={}
-Dir['*/*.mp4'].each do |f|
-  n=File.basename(f)
-  (h[n.scan(/^[^\d_]\w+/).first] ||=[])<< f
+require 'optparse'
+
+def prepare(glob)
+  h = {}
+  glob.each do |f|
+    n = File.basename(f)
+    (h[n.scan(/^[^\d_]\w+/).first] ||= []) << f
+  end
+  h
 end
 
-h.keys.each{|k|
-  # p h
-  FileUtils.mkdir_p k unless Dir.exists?(k)
-  h[k].each do |v|
-    FileUtils.mv v, "#{k}/"
-    p v
-  rescue StandardError => e
-    p ['err', e]
-    next
+class Hash
+  def move!
+    each_key do |k|
+      # p h
+      FileUtils.mkdir_p k unless Dir.exist?(k)
+      self[k].each do |v|
+        FileUtils.mv v, "#{k}/"
+        p "#{k}/#{v}"
+      rescue StandardError => e
+        p ['copy error: ', e]
+        next
+      end
+    end
   end
-}
+end
 
-# puts JSON.pretty_generate h
+glob = ARGV
+exit if glob.empty?
+
+opts = {}
+OptionParser.new do |o|
+  o.banner = 'scan and moves into first-named folders'
+  o.on '-x', '--execute'
+end.parse!(into: opts)
+
+h = prepare glob
+
+if opts[:execute]
+  p opts
+  h.move!
+else
+  puts JSON.pretty_generate h
+  puts '-[rehearsal]------------'
+end
