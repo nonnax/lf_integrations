@@ -18,7 +18,6 @@ end
 class Hash
   def move!
     each_key do |k|
-      # p h
       FileUtils.mkdir_p k unless Dir.exist?(k)
       self[k].each do |v|
         FileUtils.mv v, "#{k}/"
@@ -47,5 +46,5 @@ if opts[:execute]
   h.move!
 else
   puts JSON.pretty_generate h
-  puts '-[rehearsal]------------'
+  puts '-[rehearsal]'+'-'*80
 end
