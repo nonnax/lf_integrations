@@ -3,4 +3,8 @@
 require 'rubytools/file_ext'
 require 'fileutils'
 p f = ENV['fx'].split("\n").first
-FileUtil.cp( f, f.filename_succ ) rescue p 'error copying'
+begin
+  FileUtils.cp( f, f.filename_succ )
+rescue => e
+  puts e
+end
