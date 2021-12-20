@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 require 'rubytools/file_ext'
 require 'fileutils'
-p f = ENV['fx'].split("\n").first
+f = ENV['fx'].split("\n").first
 begin
   FileUtils.cp( f, f.filename_succ )
 rescue => e
