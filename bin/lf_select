@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+puts fname=IO.popen("which #{ARGV.pop}", &:read)
+cmd="lf -remote 'send select #{fname}'"
+IO.popen(cmd, &:read)
