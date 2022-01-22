@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2022-01-22 18:00:15 +0800
+regex=ARGV.shift
+fail "findsub 'find/replace' <glob>" unless regex
+
+find, replace = regex.split('/')
+ARGV.each do |f|
+ next unless f.match /#{find}/
+ p new_f=f.gsub(/#{find}/, replace || '')
+ File.rename f, new_f
+end
