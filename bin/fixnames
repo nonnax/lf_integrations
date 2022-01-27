@@ -1,9 +1,23 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
+require 'rubytools/file_ext'
+require 'rubytools/numeric_ext'
+require 'rubytools/array_table'
 
-ARGV.each do |f|
+summary=[]
+
+ARGV.each_with_index do |f, i|
   # p [f, f.gsub!(/[^0-9A-Za-z.\-]/, '_')]
-  File.rename f, f.gsub(/[^\w\.\-]/, '_')
-rescue StandardError
-  p [f, SystemCallError]
+  path, f_basename=File.splitpath(f)
+  new_f = f_basename.strip
+            .gsub(/[^\w\.\-]+/, '_')
+            .gsub(/_+/, '_')
+            .gsub(/[\-_]+(?=\.)/,'')
+
+  File.rename f, File.join(path, new_f)
+  summary << [i, f[0..60], new_f[0..60]]
+rescue StandardError => e
+  p [SystemCallError, e]
 end
+
+puts summary.to_table(delimeter: '   ')   
