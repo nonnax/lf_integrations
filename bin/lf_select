@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
 fname=ARGV.pop
-# p fname=File.expand_path(fname)
 cmd="lf -remote 'send select #{fname}'"
 IO.popen(cmd, &:read)

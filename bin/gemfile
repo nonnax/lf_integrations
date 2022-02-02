@@ -1,14 +1,15 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 # Id$ nonnax 2022-02-02 16:05:42 +0800
-files=File.open(ARGV.first).readlines(chomp: true)
-puts doc=<<~___
-source "https://rubygems.org"
-#{
-files
-.select{|l| l.strip.size > 0 }
-.map{|l| 
-        l.match(/^\s*#/) ? l : "gem '#{l.strip}'"
-     }
-.join("\n")
-}
+files = ARGF.readlines(chomp: true)
+            .select { |l| l.strip.size.positive? }
+            .map { |l| l.match(/^\s*#/) ? l : "gem '#{l.strip}'" }
+            .join("\n")
+
+doc = <<~___
+  source "https://rubygems.org"
+  #{files}
 ___
+
+puts doc
