@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2022-02-02 15:06:22 +0800
+# require 'kramdown'
+# ARGV.each do |html|
+  # p Kramdown::Document.new(html, :html_to_native => true).to_kramdown
+# end
+require 'reverse_markdown'
+
+ReverseMarkdown.config do |config|
+  config.unknown_tags     = :bypass
+  config.github_flavored  = true
+  config.tag_border  = "\n"
+end
+
+f=ARGV.first
+f_md=File.basename(f, '.*')+'.md'
+input=File.read(f)
+
+res=ReverseMarkdown.convert(input)
+
+File.write(f_md, res)
