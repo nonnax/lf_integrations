@@ -6,7 +6,9 @@ source "https://rubygems.org"
 #{
 files
 .select{|l| l.strip.size > 0 }
-.map{|l| "gem '#{l.strip}'" }
+.map{|l| 
+        l.match(/^\s*#/) ? l : "gem '#{l.strip}'"
+     }
 .join("\n")
 }
 ___
