@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2022-02-02 16:05:42 +0800
+files=File.open(ARGV.first).readlines(chomp: true)
+puts doc=<<~___
+source "https://rubygems.org"
+#{
+files
+.select{|l| l.strip.size > 0 }
+.map{|l| "gem '#{l.strip}'" }
+.join("\n")
+}
+___
