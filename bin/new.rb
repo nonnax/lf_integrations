@@ -11,5 +11,5 @@ File.open(fname, 'w') do |f|
 end
 File.chmod(0755, fname)
 
-cmd="lf -remote 'send select #{fname}'"
+cmd="lf_select '#{fname}'"
 IO.popen(cmd, &:read)
