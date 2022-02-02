@@ -537,8 +537,8 @@ map ot $ttsedit "$f"
 
 map pP paste
 map PP paste
-map pl $pastelink.rb
-map ps $pastelink.rb
+map pl $pastelink
+map ps $pastelink
 
 # map r rename_edit
 # map R bulk-rename
