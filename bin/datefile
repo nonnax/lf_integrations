@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # Id$ nonnax 2022-02-03 13:42:51 +0800
-#  filedate <filetype> or filedate <filetype><ext>
+#  datefile <filetype> or datefile <filetype><ext>
 require 'rubytools/file_ext'
 
 type, ext = ARGV
