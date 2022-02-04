@@ -20,9 +20,10 @@ f = []
 f << Time.now.strftime('%a-%Y-%m-%d')
 f << '.' if ext
 f << ext
-out_f = f.compact.join
+tmp = f.compact.join
+out_f=tmp.filename_succ
 
 header = type ? "#!/usr/bin/env #{type}" : ''
 
-File.write(out_f.filename_succ, header)  
+File.write(out_f, header)  
 IO.popen("lf_select #{out_f}")
