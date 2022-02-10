@@ -4,5 +4,17 @@
 # requires: 
 # fzf
 # fd
+# bat
 # lf_integrations.gem (https://github.com/nonnax.com/lf_integrations/git)
-IO.popen("lf_select $(fd | sort | fzf)", &:read)
+cmd=<<___
+  lf_select 
+    $(
+        fd | 
+        sort | 
+        fzf --preview='[ -f {} ] && bat -pp --color=always {} || tree {}'
+    )
+___
+
+p cmd=cmd.gsub(/\n+/, '').gsub(/\s+/, ' ')
+
+IO.popen(cmd, &:read)
