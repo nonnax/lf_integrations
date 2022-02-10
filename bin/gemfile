@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 # Id$ nonnax 2022-02-02 16:05:42 +0800
+# cat gemlist.txt | gemfile > Gemfile 
 files = ARGF.readlines(chomp: true)
             .select { |l| l.strip.size.positive? }
             .map { |l| l.match(/^\s*#/) ? l : "gem '#{l.strip}'" }
