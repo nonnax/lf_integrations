@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+# selects a file in the current directory
 fname=ARGV.pop
+
 cmd="lf -remote 'send select #{fname}'"
 IO.popen(cmd, &:read)
+
