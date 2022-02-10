@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2022-02-10 12:29:09 +0800
+# selects a file with fzf 
+# requires: 
+# fzf
+# fd
+# lf_integrations.gem (https://github.com/nonnax.com/lf_integrations/git)
+IO.popen("lf_select $(fd | sort | fzf)", &:read)
