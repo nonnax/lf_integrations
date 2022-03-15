@@ -5,7 +5,7 @@ fail "findsub 'find/replace' <glob>" unless regex
 
 find, replace = regex.split('/')
 ARGV.each do |f|
- next unless f.match /#{find}/
+ next unless f.match? /#{find}/
  p new_f=f.gsub(/#{find}/, replace || '')
  File.rename f, new_f
 end

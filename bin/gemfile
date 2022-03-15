@@ -5,7 +5,7 @@
 # cat gemlist.txt | gemfile > Gemfile 
 files = ARGF.readlines(chomp: true)
             .select { |l| l.strip.size.positive? }
-            .map { |l| l.match(/^\s*#/) ? l : "gem '#{l.strip}'" }
+            .map { |l| l.match?(/^\s*#/) ? l : "gem '#{l.strip}'" }
             .join("\n")
 
 doc = <<~___
