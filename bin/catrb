@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2022-03-15 22:25:19 +0800
+#
+# reads filename with format <filename>:<lineno>:<col>:<etc..>
+# dumps contents until it reaches <lineno>
+#
+require 'rubytools/pipe_argv'
+f=PIPE_ARGV().dup
+fn, stop, = f.split(':')
+ARGV.clear
+ARGV.push fn
+
+ARGF.each(chomp: true) do |l|
+  break unless ARGF.file.lineno <= stop.to_i
+  puts l 
+end

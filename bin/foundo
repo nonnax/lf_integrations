@@ -1,2 +1,3 @@
-#!/usr/bin/env bash
-cat /tmp/.findo
+#!/usr/bin/env ruby
+
+print File.read '/tmp/.findo'

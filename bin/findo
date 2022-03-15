@@ -1,18 +1,12 @@
-#!/usr/bin/sh
-set -e
-set -u
-# selected=$(rg  --max-depth 2 --vimgrep "$1" | awk -F: '{print $1 ":" $2}'  | fzf --preview 'preview.sh {}' --preview-window='50%')
-if [ ! "$#" -gt 0 ]; then
-  echo "Need a string to search for!";
-  exit 1;
-fi
+#!/usr/bin/env ruby
+# Id$ nonnax 2022-03-15 22:02:45 +0800
+require 'rubytools/editor'
+q, = ARGV
+cmd="rg --ignore-case --vimgrep --sort path  --hidden --max-depth=2 '#{q}' | fzf --ansi  --preview='catrb {} | tail' --preview-window='50%'"
+selected=IO.popen(cmd, &:read) 
 
-selected="$(rg --ignore-case --vimgrep --sort path  --hidden --max-depth=2 "$1" | fzf --ansi  --preview 'preview {}' --preview-window='50%')"
+exit if selected.empty? 
 
-if [ -z "$selected" ]; then
-	echo 'no file selected'
-	exit 0
-else
-	$EDITOR "$selected" 
-	printf "$selected" | awk -F: '{ print $1 }' > /tmp/.findo
-fi
+IO.popen([ENV['EDITOR'], selected], &:read)
+File.write('/tmp/.findo', selected)
+

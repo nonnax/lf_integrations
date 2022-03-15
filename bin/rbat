@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2022-03-15 22:20:57 +0800
+require 'rubytools/pipe_argv'
+
+f = PIPE_ARGV().dup
+IO.popen([ENV['EDITOR'], f], &:read)
