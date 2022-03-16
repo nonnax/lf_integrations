@@ -7,7 +7,7 @@ task :bundle do
 end
 
 desc "Build the lf_integrations gem"
-task :build  do
+task build: %w[bundle]  do
   sh "gem build lf_integrations.gemspec"
 end
 

@@ -1,8 +1,14 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 require 'lf/lf'
+require 'optparse'
 # ls (file manager) util: ls selected files printed
 #
+opts={}
+OptionParser.new do |o|
+  o.on '-f', '--full', 'Use full path'
+end.parse!(into: opts)
+
 LF.files_selected.each do |f|
-  puts File.basename(f)
+  puts( opts[:full] ? f : File.basename(f) )  
 end
