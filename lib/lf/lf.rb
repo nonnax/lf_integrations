@@ -5,7 +5,7 @@ module LF
   # module_function does not work when extending Dir
   def files_selected
     lfshare = File.expand_path('~/.local/share/lf/files')
-    files = File.readlines(lfshare).map(&:chomp)
+    files = File.readlines(lfshare, chomp: true)
     files.shift
     files
   end
