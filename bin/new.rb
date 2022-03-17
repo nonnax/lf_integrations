@@ -1,14 +1,12 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-TEMPLATE = <<~DOC
+TEMPLATE = <<~___
   #!/usr/bin/env ruby
   # Id$ nonnax #{Time.now}
-DOC
+___
 fname=ARGV.first || 'noname.rb'
-File.open(fname, 'w') do |f|
-  f.puts TEMPLATE
-end
+File.write(fname, TEMPLATE)
 File.chmod(0755, fname)
 
 cmd="lf_select '#{fname}'"
