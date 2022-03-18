@@ -2,10 +2,10 @@
 # Id$ nonnax 2022-03-15 22:02:45 +0800
 require 'rubytools/editor'
 q, = ARGV
-cmd="rg --ignore-case --vimgrep --sort path  --hidden --max-depth=2 '#{q}' | fzf --ansi  --preview='catrb {} | tail' --preview-window='50%'"
+cmd="rg --ignore-case --no-messages --vimgrep --sort path  --hidden --max-depth=2 '#{q}' | fzf --ansi  --preview='catrb {} | tail' --preview-window='50%'"
 selected=IO.popen(cmd, &:read) 
 
-exit if selected.empty? 
+exit if selected.empty?
 
 IO.popen([ENV['EDITOR'], selected], &:read)
 File.write('/tmp/.findo', selected)
