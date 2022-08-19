@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2022-08-19 13:56:24
+require 'filemagic'
+f,=ARGV
+
+def is_file?(f)
+  # res=IO.popen("file #{f}", &:read)
+  FileMagic.open(:mime) do |fm|
+    %w[text ruby python lua bash].any?{|type| fm.file(f).match?(type)}
+  end
+end
+
+is_file?(f.chomp) && IO.popen(["$EDITOR", f.chomp], &:read)
