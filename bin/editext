@@ -10,4 +10,4 @@ def is_file?(f)
   end
 end
 
-is_file?(f.chomp) && IO.popen(["$EDITOR", f.chomp], &:read)
+is_file?(f.chomp) && IO.popen([ENV['EDITOR'], f.chomp], &:read)
