@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
-require 'rubytools/file_ext'
+require 'file/file_ext'
 require 'rubytools/numeric_ext'
-require 'rubytools/array_table'
+require 'df/df_ext'
+using DFExt
 
 summary=[]
 
@@ -20,4 +21,4 @@ rescue StandardError => e
   p [SystemCallError, e]
 end
 
-puts summary.to_table(delimeter: '   ')   
+puts summary.transpose.to_table(separator: '   ')
