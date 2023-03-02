@@ -16,16 +16,18 @@ list['pk'] = "#!/usr/bin/env -S pocket\n# Id$ nonnax #{Time.now()}"
 list['ex'] = "#!/usr/bin/env -S elixir\n# Id$ nonnax #{Time.now()}"
 list['exs'] = "#!/usr/bin/env -S elixir\n# Id$ nonnax #{Time.now()}"
 
-def list.get_ext(ext)
- self.fetch(ext.to_s){'rb'}
+def list.valid_ext(ext)
+ self[ext.to_s] ? ext : ext
 end
 
 dirname=Pathname(Dir.pwd)
 ext, = ARGV
-ext = list.get_ext(ext)
+ext = list.valid_ext(ext)
 
 fname = [dirname.basename, ext].join('.')
 
 fname = File.backup!(fname) if File.exist?(fname)
 
-File.write(fname, list.get_ext(ext))
+f, text = Filer.load(TextFile.new(fname)){}
+
+f.write( String(list[ext]) )
