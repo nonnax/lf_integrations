@@ -15,6 +15,8 @@ list['wren'] = "#!/usr/bin/env -S wren\n// Id$ nonnax #{Time.now()}"
 list['pk'] = "#!/usr/bin/env -S pocket\n# Id$ nonnax #{Time.now()}"
 list['ex'] = "#!/usr/bin/env -S elixir\n# Id$ nonnax #{Time.now()}"
 list['exs'] = "#!/usr/bin/env -S elixir\n# Id$ nonnax #{Time.now()}"
+list['r'] = "#!/usr/bin/env -S Rscript\n# Id$ nonnax #{Time.now()}"
+list['jl'] = "#!/usr/bin/env -S julia\n# Id$ nonnax #{Time.now()}"
 
 def list.valid_ext(ext)
  self[ext.to_s] ? ext : ext
