@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2023-03-22 10:36:42 +0800
+def walk(dir, acc=[])
+
+  Dir.foreach(dir) do |f|
+    dird=File.join(dir, f)
+    if test(?d, dird)
+       next if f.match?(/^\.{1,2}/)
+       walk(dird, acc)
+    else
+       acc << [dir, f]
+    end
+  end
+  dir
+end
+data=[]
+walk '.', data
+
+pp data.group_by(&:first).transform_values{|a| a.map(&:last).size}

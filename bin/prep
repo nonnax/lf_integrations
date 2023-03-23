@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2023-03-18 21:23:49 +0800
+require 'rubytools/editor'
+require 'file/filer'
+require 'texticle/texticle'
+
+f='/tmp/prep.sh'
+args = ARGV
+
+f, buffer = Filer.load(TextFile.new(f))
+
+args = [buffer] if args.empty?
+
+template = IO.editor(args.join(' '))
+
+cmd = Texticle.parse(template)
+
+cmd = cmd.gsub(/\n+/,' ')
+
+puts IO.popen(cmd, &:read) unless cmd.strip.empty?
+
+f.write template unless template.strip.empty?

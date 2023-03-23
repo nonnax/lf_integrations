@@ -9,7 +9,7 @@ require 'open3'
 tmp='/tmp/eval.jl'
 
 def eval_r(f)
-   IO.popen( ["julia", f ].join(' '), &:read )
+   IO.popen( format("julia.sh %s",  f) , &:read )
 end
 
 File

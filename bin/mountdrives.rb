@@ -17,7 +17,7 @@
 # └─sdb6   8:22   0   440G  0 part
 
 
-%w[sda3 sda6 sda7 sdb3 sdb5 sdb6 sdc1]
+%w[sda7 sdb3 sdb5 sdb6 sdc1]
 .map do |name|
   cmd=format "udisksctl mount -b /dev/%s", name
 end
