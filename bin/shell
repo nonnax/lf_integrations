@@ -12,12 +12,14 @@ require 'time/time_ext'
 # note: any shell command can also be used in the template
 # multiple shell commands are separated by `&&` as usual
 # useful template commands:
-# basename(fname), ts(timestring) for timestamp math, in addition to all public ruby methods
+# basename(fname), ts(timestamp) for timestamp math, in addition to all public ruby methods
 #
 class Shell
   attr :cmd
+
   def initialize(f, **params)
     @template = FileImporter.parse(File.read(f))
+    @template = @template.split(/\n/).reject{|l| l.match?(/^[!#]/)}.join("\n")
     @params = params
   end
 
@@ -28,6 +30,7 @@ class Shell
   def run
     puts IO.popen(render, &:read)
   end
+
 end
 
 module Kernel
@@ -40,9 +43,19 @@ end
 f, *pairs = ARGV
 
 unless f
+  sample=<<~___
+    echo
+    {{3.times do}}
+      hi {name}
+    {{end}}
+  ___
   f = [File.basename(Dir.pwd),'.tt'].join
-  File.write(f, 'ffmpeg -i {i} {basename(i)}')
-  raise ['use template: ', f].join
+  File.write(f, sample) unless File.exist?(f)
+  help=<<~___
+    usage: shell template key value key2 value2
+    see template file: #{f}
+  ___
+  raise help
 end
 
 params = pairs.each_slice(2).to_a.to_h

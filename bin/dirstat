@@ -1,11 +1,14 @@
 #!/usr/bin/env ruby
 # Id$ nonnax 2023-03-22 10:36:42 +0800
+require 'df/df_ext'
+using DFExt
+
 def walk(dir, acc=[])
 
   Dir.foreach(dir) do |f|
     dird=File.join(dir, f)
     if test(?d, dird)
-       next if f.match?(/^\.{1,2}/)
+       next if f.match?(/^\.{1,2}|.git$/)
        walk(dird, acc)
     else
        acc << [dir, f]
@@ -16,4 +19,6 @@ end
 data=[]
 walk '.', data
 
-pp data.group_by(&:first).transform_values{|a| a.map(&:last).size}
+h = data.group_by(&:first).transform_values{|a| a.map(&:last).size}.transform_keys{|e| e.gsub(%r|^\./|, '')}
+
+puts h.transpose.to_table
