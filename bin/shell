@@ -18,13 +18,15 @@ class Shell
   attr :cmd
 
   def initialize(f, **params)
-    @template = FileImporter.parse(File.read(f))
-    @template = @template.split(/\n/).reject{|l| l.match?(/^[!#]/)}.join("\n")
+    first = File.readlines(f)
+    first = first.reject{|l| l.match?(/^#/)}.join("\n")
+    @template = FileImporter.parse(first).to_s
+
     @params = params
   end
 
   def render
-    p @cmd=Texticle.parse(@template, **@params).gsub(/\n+/, '  ')
+    @cmd=Texticle.parse(@template, **@params).gsub(/\n+/, '  ')
   end
 
   def run
@@ -45,14 +47,13 @@ f, *pairs = ARGV
 unless f
   sample=<<~___
     #!/usr/bin/env shell
-
     echo
     {{3.times do}}
       hi {name}
     {{end}}
   ___
   f = [File.basename(Dir.pwd),'.tt'].join
-  File.write(f, sample) unless File.exist?(f)
+  File.write(f, sample)
   help=<<~___
     usage: shell template key value key2 value2
     see template file: #{f}
