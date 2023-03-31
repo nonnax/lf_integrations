@@ -44,6 +44,8 @@ f, *pairs = ARGV
 
 unless f
   sample=<<~___
+    #!/usr/bin/env shell
+
     echo
     {{3.times do}}
       hi {name}
