@@ -19,8 +19,26 @@ list['r'] = "#!/usr/bin/env -S Rscript\n# Id$ nonnax #{Time.now()}"
 list['jl'] = "#!/usr/bin/env -S julia\n# Id$ nonnax #{Time.now()}"
 list['js'] = "#!/usr/bin/env node\n// Id$ nonnax #{Time.now()}"
 list['R'] = "#!/usr/bin/env -S Rscript\n# Id$ nonnax #{Time.now()}"
+list['html'] = <<~___
+<!-- Id$ nonnax #{Time.now()} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+</body>
+</html>
+
+___
 list['ru'] =<<~___
+# Id$ nonnax #{Time.now()}
 require 'rack'
+
 use Rack::Static,
   :urls => [""],
   :root => "public",
