@@ -19,7 +19,17 @@ list['r'] = "#!/usr/bin/env -S Rscript\n# Id$ nonnax #{Time.now()}"
 list['jl'] = "#!/usr/bin/env -S julia\n# Id$ nonnax #{Time.now()}"
 list['js'] = "#!/usr/bin/env node\n// Id$ nonnax #{Time.now()}"
 list['R'] = "#!/usr/bin/env -S Rscript\n# Id$ nonnax #{Time.now()}"
+list['ru'] =<<~___
+ require 'rack'
+use Rack::Static,
+  :urls => [""],
+  :root => "public"
+  :index => 'index.html'
 
+run lambda { |env|
+  [ 200, { 'content-type'  => 'text/html' }, 'default' ]
+}
+___
 def list.valid_ext(ext)
  self[ext.to_s] ? ext : ext
 end
