@@ -23,8 +23,8 @@ list['ru'] =<<~___
 require 'rack'
 use Rack::Static,
   :urls => [""],
-  :root => "public"
-  :index => 'index.html'
+  :root => "public",
+  :index => "index.html"
 
 run lambda { |env|
   [ 200, { 'content-type'  => 'text/html' }, 'default' ]
