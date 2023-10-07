@@ -20,7 +20,7 @@ list['jl'] = "#!/usr/bin/env -S julia\n# Id$ nonnax #{Time.now()}"
 list['js'] = "#!/usr/bin/env node\n// Id$ nonnax #{Time.now()}"
 list['R'] = "#!/usr/bin/env -S Rscript\n# Id$ nonnax #{Time.now()}"
 list['ru'] =<<~___
- require 'rack'
+require 'rack'
 use Rack::Static,
   :urls => [""],
   :root => "public"
