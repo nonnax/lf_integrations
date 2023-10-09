@@ -18,6 +18,7 @@ list['exs'] = "#!/usr/bin/env -S elixir\n# Id$ nonnax #{Time.now()}"
 list['r'] = "#!/usr/bin/env -S Rscript\n# Id$ nonnax #{Time.now()}"
 list['jl'] = "#!/usr/bin/env -S julia\n# Id$ nonnax #{Time.now()}"
 list['js'] = "#!/usr/bin/env node\n// Id$ nonnax #{Time.now()}"
+list['coffee'] = "#!/usr/bin/env coffee\n# Id$ nonnax #{Time.now()}"
 list['R'] = "#!/usr/bin/env -S Rscript\n# Id$ nonnax #{Time.now()}"
 list['html'] = <<~___
 <!-- Id$ nonnax #{Time.now()} -->
