@@ -6,7 +6,7 @@
 require 'rubytools/editor'
 require 'open3'
 
-tmp='/tmp/eval.js'
+tmp='/tmp/eval.coffee'
 
 def eval_r(f)
    IO.popen( format("coffee %s",  f) , &:read )
