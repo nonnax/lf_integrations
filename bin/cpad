@@ -18,7 +18,7 @@ File
 eval_r(tmp)
 .then{ |s| String(s).split("\n") }
 .tap{| s | puts s}
-.map{ |s| ['// ', s].join }
+.map{ |s| ['# ', s].join }
 .join("\n")
 .then{|s| File.write tmp, s, mode: 'a'}
 .then{|s| File.write tmp, "\n", mode: 'a'}
