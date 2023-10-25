@@ -33,7 +33,7 @@ list['html'] = <<~___
 <body>
 <script type="text/javascript" src="d3/d3.v7.js"></script>
 <script>
-<!-- Id$ nonnax #{Time.now()} -->
+//Id$ nonnax #{Time.now()}
 </script>
 </body>
 </html>
