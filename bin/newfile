@@ -21,17 +21,20 @@ list['js'] = "#!/usr/bin/env node\n// Id$ nonnax #{Time.now()}"
 list['coffee'] = "#!/usr/bin/env coffee\n# Id$ nonnax #{Time.now()}"
 list['R'] = "#!/usr/bin/env -S Rscript\n# Id$ nonnax #{Time.now()}"
 list['html'] = <<~___
-<!-- Id$ nonnax #{Time.now()} -->
-
 <!DOCTYPE html>
 <html lang="en">
+<!-- Id$ nonnax #{Time.now()} -->
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>New Page</title>
     <link rel="stylesheet" href="css/styles.css">
+
 </head>
 <body>
-
+<script type="text/javascript" src="d3/d3.v7.js"></script>
+<script>
+<!-- Id$ nonnax #{Time.now()} -->
+</script>
 </body>
 </html>
 
