@@ -28,7 +28,21 @@ list['html'] = <<~___
     <meta charset="utf-8">
     <title>New Page</title>
     <link rel="stylesheet" href="css/styles.css">
-
+    <style>
+      body { font: 12px Arial;}
+      path {
+        stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+      }
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+      }
+    </style>
 </head>
 <body>
 <script type="text/javascript" src="d3/d3.v7.min.js"></script>
