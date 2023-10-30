@@ -2,8 +2,8 @@
 # Id$ nonnax 2022-03-15 22:02:45 +0800
 require 'rubytools/editor'
 q, = ARGV
-cmd="rg --ignore-case --no-messages --vimgrep --sort path  --hidden --max-depth=2 '#{q}' | fzf --ansi  --preview='catrb {} | tail' --preview-window='50%'"
-selected=IO.popen(cmd, &:read) 
+cmd="rg --ignore-case --no-messages --vimgrep --sort path  --hidden --max-depth=3 '#{q}' | fzf --ansi  --preview='catrb {} | tail' --preview-window='50%'"
+selected=IO.popen(cmd, &:read)
 
 exit if selected.empty?
 
