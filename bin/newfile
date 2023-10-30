@@ -70,6 +70,11 @@ def list.valid_ext(ext)
  self[ext.to_s] ? ext : ext
 end
 
+def list.header(ext)
+  default = "#!/usr/bin/env #{ext}\n# Id$ nonnax #{Time.now()}"
+  self.fetch(ext, default)
+end
+
 dirname=Pathname(Dir.pwd)
 ext, = ARGV
 ext = list.valid_ext(ext)
@@ -80,4 +85,4 @@ fname = File.backup!(fname) if File.exist?(fname)
 
 f, text = Filer.load(TextFile.new(fname)){}
 
-f.write( String(list[ext]) )
+f.write( String(list.header(ext)) )
