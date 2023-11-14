@@ -26,8 +26,10 @@ list['html'] = <<~___
 <!-- Id$ nonnax #{Time.now()} -->
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1>
     <title>New Page</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="static/style.css">
     <style>
       body { font: 12px Arial;}
       path {
@@ -45,7 +47,7 @@ list['html'] = <<~___
     </style>
 </head>
 <body>
-<script type="text/javascript" src="d3/d3.v7.min.js"></script>
+<script type="text/javascript" src="static/index.js"></script>
 <script>
 //Id$ nonnax #{Time.now()}
 </script>
