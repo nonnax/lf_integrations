@@ -9,7 +9,7 @@ require 'open3'
 tmp='/tmp/eval.lua'
 
 def eval_r(f)
-   IO.popen( format("luajit %s",  f) , &:read )
+   IO.popen( format("luvit %s",  f) , &:read )
 end
 
 File
