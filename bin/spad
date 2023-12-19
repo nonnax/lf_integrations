@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+# Id$ nonnax 2023-02-25 22:15:11 +0800
+
+# data1 = c(3, 5, 7, 5, 3, 2, 6, 8, 5, 6, 9)
+
+require 'rubytools/editor'
+require 'open3'
+
+tmp='/tmp/eval.shine'
+
+def eval_r(f)
+   IO.popen( format("shine %s",  f) , &:read )
+end
+
+File
+.edit( tmp )
+
+eval_r(tmp)
+.then{ |s| String(s).split("\n") }
+.tap{| s | puts s}
+.map{ |s| ['-- ', s].join }
+.join("\n")
+.then{|s| File.write tmp, s, mode: 'a'}
+.then{|s| File.write tmp, "\n", mode: 'a'}
