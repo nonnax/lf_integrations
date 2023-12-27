@@ -8,6 +8,10 @@ require 'open3'
 
 tmp='/tmp/eval.gravity'
 
+unless File.exists?(tmp) then
+   File.write("func main(){}", tmp)
+end
+
 def eval_r(f)
    IO.popen( format("gravity %s",  f) , &:read )
 end
