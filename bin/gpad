@@ -8,7 +8,7 @@ require 'open3'
 
 tmp='/tmp/eval.gravity'
 
-unless File.exists?(tmp) then
+unless File.exist?(tmp) then
    File.write("func main(){}", tmp)
 end
 
