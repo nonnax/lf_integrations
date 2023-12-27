@@ -13,7 +13,7 @@ unless File.exist?(tmp) then
 end
 
 def eval_r(f)
-   IO.popen( format("gravity %s",  f) , &:read )
+   IO.popen( format("gravity -q %s",  f) , &:read )
 end
 
 File
