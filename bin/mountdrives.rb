@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env mruby
 # Id$ nonnax 2023-02-18 21:14:15
 # NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 # sda      8:0    0   1.8T  0 disk
